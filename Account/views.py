@@ -3,10 +3,10 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
-
+@csrf_exempt
 def SignUp(request):
     if request.method == "POST":
         username = request.POST.get('username')
@@ -22,7 +22,7 @@ def SignUp(request):
     return render(request, 'Account/signup.html')
 
 
-
+@csrf_exempt
 def Login(request):
     if request.method == "POST":
         username = request.POST.get('uname')
