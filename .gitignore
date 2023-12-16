@@ -1,0 +1,10 @@
+.vscode/
+.idea/
+.vs/
+media/
+
+/MyProduct/__pycache__/
+/Notes/__pycache__
+/Notes/migrations/*.py
+
+Notes/__pycache__/
