@@ -2,15 +2,7 @@
 .idea/
 .vs/
 media/
-
-
-
 /Notes/migrations/*.py
-
-
-
-
 /acounts/migrations/*.py
 /acounts/__pycache__
-
 __pycache__/
