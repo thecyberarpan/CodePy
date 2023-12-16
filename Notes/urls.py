@@ -11,8 +11,4 @@ urlpatterns = [
     path('author/<slug:authslug>', views.AuthorDetails, name="AuthorDetails"),
     path('filtered-results/', views.filtered_results, name='filtered_results'),
 
-    # path('category/', views.AllCategory, name = 'AllCategory'),
-    # path('category/<slug:category_slug>/', views.CategoryPosts, name='category_posts'),
-    # path('instructors-list/', views.InstructorsList, name="InstructorsList"),
-    # path('instructors-single/', views.InstructorsSingle, name="InstructorsSingle"),
 ]

@@ -8,3 +8,6 @@ media/
 /Notes/migrations/*.py
 
 Notes/__pycache__/
+
+
+/Acounts/migrations/*.py
