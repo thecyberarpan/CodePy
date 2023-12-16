@@ -10,18 +10,16 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-scroll justify-content-center">
                 <li class="breadcrumb-item">
-                    <a class="text-gray-800" href="#">
+                    <a class="text-gray-800" href="{% url "Index" %}">
                         Home
                     </a>
                 </li>
                 <li class="breadcrumb-item text-gray-800 active" aria-current="page">
-                    Courses Grid 02
+                    Category
                 </li>
             </ol>
         </nav>
     </div>
-    <!-- Img -->
-    <img class="d-none img-fluid" src="...html" alt="...">
 </header>
 
 
@@ -78,7 +76,7 @@
                     <!-- Footer -->
                     <div class="card-footer px-0 pb-0 pt-6">
                         <h5 class="mb-0 line-clamp-1">{{ cat.Title}}</h5>
-                        <p class="mb-0 line-clamp-1">Over 960 Courses</p>
+                        <p class="mb-0 line-clamp-1">Over {{cat.notes_set.all.count}} Notes</p>
                     </div>
                 </a>
             </div>
@@ -200,8 +198,7 @@
                                     </div>
 
                                     <div class="col-auto px-2 text-right">
-                                        <del class="font-size-sm">$959</del>
-                                        <ins class="h4 mb-0 d-block mb-lg-n1">$415.99</ins>
+                                        <ins class="h4 mb-0 d-block mb-lg-n1">₹{{n.Price}}</ins>
                                     </div>
                                 </div>
                             </div>

@@ -51,3 +51,21 @@ def AuthorDetails(request, authslug):
     author_posts = Notes.objects.filter(Author=author)
     context = {'author': author, 'author_posts': author_posts}
     return render(request, 'Notes/instructors-single.html', context)
+
+
+def filtered_results(request):
+    # Get selected category IDs from the request's GET parameters
+    category_ids = request.GET.getlist('categories')
+
+    # If no categories are selected, show all posts
+    if not category_ids:
+        notes = Notes.objects.all()
+    else:
+        # Filter posts based on selected categories
+        notes = Notes.objects.filter(Category__id__in=category_ids)
+
+    # Retrieve all categories for display
+    category = Category.objects.all()
+
+    context = {'notes': notes, 'category': category}
+    return render(request, 'Notes/filtered-results.html', context)

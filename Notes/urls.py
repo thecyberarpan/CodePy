@@ -9,7 +9,7 @@ urlpatterns = [
     path('category/<slug:catslug>', views.CategoryDetails, name='CategoryDetails'),
     path('author/', views.AllAuthor, name="AllAuthor"),
     path('author/<slug:authslug>', views.AuthorDetails, name="AuthorDetails"),
-
+    path('filtered-results/', views.filtered_results, name='filtered_results'),
 
     # path('category/', views.AllCategory, name = 'AllCategory'),
     # path('category/<slug:category_slug>/', views.CategoryPosts, name='category_posts'),

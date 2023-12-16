@@ -1,7 +1,9 @@
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
+
 # Create your models here.
 
 
@@ -14,6 +16,10 @@ class Author(models.Model):
     Instagram = models.CharField(max_length=500, default="", null=True, blank=True)
     Linkdin = models.CharField(max_length=500, default="", null=True, blank=True)
     slug = models.SlugField(max_length=500, null=True, blank=True, unique=True)
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 
     def __str__(self):
         return self.Name
@@ -47,9 +53,13 @@ class Notes(models.Model):
     Category = models.ForeignKey(Category, on_delete=models.CASCADE, default=True, null=False)
     Title = models.CharField(max_length=500, default="")
     Description = models.TextField()
+    Price = models.IntegerField(default = 0)
     File = models.FileField(upload_to="File", default="")
     Cover = models.ImageField(upload_to='Notes Cover', default="", null=True)
     slug = models.SlugField(max_length=500, null=True, blank=True, unique=True)
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
         return self.Title
