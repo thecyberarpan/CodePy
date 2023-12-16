@@ -10,5 +10,4 @@ urlpatterns = [
     path('author/', views.AllAuthor, name="AllAuthor"),
     path('author/<slug:authslug>', views.AuthorDetails, name="AuthorDetails"),
     path('filtered-results/', views.filtered_results, name='filtered_results'),
-
 ]

@@ -3,12 +3,14 @@
 .vs/
 media/
 
-/MyProduct/__pycache__/
-/Notes/__pycache__
+
+
 /Notes/migrations/*.py
 
-Notes/__pycache__/
 
 
-/Acounts/migrations/*.py
-/Acounts/__pycache__
+
+/acounts/migrations/*.py
+/acounts/__pycache__
+
+__pycache__/

@@ -84,3 +84,11 @@ def pre_save_post_reciever(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_post_reciever, Notes)
+
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return self.email

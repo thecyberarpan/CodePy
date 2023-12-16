@@ -655,11 +655,12 @@
                     <h1 class="text-capitalize">Subscribe our newsletter</h1>
                     <p class="text-capitalize font-size-lg mb-md-6 mb-4">We never spam. Promice!</p>
                     <div class="mx-md-8">
-                        <form>
+                        <form method="post">
+                            {% csrf_token %}
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email" aria-describedby="button-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary btn-sm-wide text-white" type="button" id="button-addon2">Subscribe</button>
+                                    <button class="btn btn-primary btn-sm-wide text-white" type="submit" name="subscribe">Subscribe</button>
                                 </div>
                             </div>
                         </form>
