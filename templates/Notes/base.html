@@ -275,8 +275,7 @@
 
             <!-- Brand -->
             <a class="navbar-brand me-0" href={% url "Index" %}>
-                <img src={%static "assets/img/codepy.png" %} class="navbar-brand-img" alt="...">
-
+                <img src={%static "assets/img/codepy.png" %} class="navbar-brand-img" alt="..."style="margin-left: 5.9vw;">
             </a>
 
             <!-- Vertical Menu -->
@@ -306,7 +305,6 @@
                             Notes
                         </a>
                     </li>
-
                     {% if user.is_authenticated %}
 
                     <li class="nav-item dropdown">

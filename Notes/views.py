@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import *
 from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 
 def Index(request):
@@ -34,6 +36,7 @@ def AllCategory(request):
     category = Category.objects.all().order_by('-id')
     context = {'category': category}
     return render(request, 'Notes/category-list.html', context)
+
 
 @login_required(login_url="/account/login")
 def CategoryDetails(request, catslug):
