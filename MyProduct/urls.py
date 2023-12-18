@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Notes.urls')),
     path('account/', include('Account.urls')),
+    path('blog/', include('Blog.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),  #USe for rich text editor name: CKEDITOR
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,576 @@
+{% extends "Notes/base.html" %}
+{% load static %}
+{% block body %}
+
+<!-- BREADCRUMBS
+    ================================================== -->
+<div class="container">
+    <nav class="mb-5 mb-md-8 mt-2" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-scroll">
+            <li class="breadcrumb-item">
+                <a class="text-gray-800" href="{% url "Index" %}">
+                    Home
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="text-gray-800" href="{% url "BlogIndex" %}">
+                    Blog List
+                </a>
+            </li>
+            <li class="breadcrumb-item text-gray-800 active" aria-current="page">
+                Blog Single
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<!-- POST
+    ================================================== -->
+<div class="container">
+    <div class="row mb-8 justify-content-center">
+        <div class="col-lg-10 mb-6 mb-lg-0 position-relative">
+            <h1 class="me-xl-14">
+                {{posts.Title}}
+            </h1>
+            <p class="me-xl-13 mb-5">{{posts.Description | truncatechars:100 }}</p>
+
+            <a href="#"
+                class="badge badge-lg badge-rounded-circle badge-secondary font-size-base badge-float badge-float-inside top-0 text-white">
+                <i class="far fa-heart"></i>
+            </a>
+
+            <!-- POST META
+                ================================================== -->
+            <div class="d-md-flex align-items-center mb-5">
+                <div class="border rounded-circle d-inline-block mb-4 mb-md-0 me-md-6 me-lg-4 me-xl-6">
+                    <div class="p-2">
+                        <img src={{posts.Author.Profile.url}} alt="..." class="rounded-circle" width="68" height="68">
+                    </div>
+                </div>
+
+                <div class="mb-4 mb-md-0 me-md-8 me-lg-4 me-xl-8">
+                    <h6 class="mb-0">Created by</h6>
+                    <a href="/author/{{authslug}}" class="font-size-sm text-gray-800">{{posts.Author.Name}}</a>
+                </div>
+
+                <div class="mb-4 mb-md-0 me-md-8 me-lg-4 me-xl-8">
+                    <h6 class="mb-0">Categories</h6>
+                    <a href="#" class="font-size-sm text-gray-800">{{posts.Category}}</a>
+                </div>
+
+                <div class="mb-4 mb-md-0 me-md-6 me-lg-4 me-xl-6">
+                    <h6 class="mb-0">Review</h6>
+                    <div class="d-lg-flex align-items-center">
+                        <div class="star-rating mb-2 mb-lg-0">
+                            <div class="rating" style="width:100%;"></div>
+                        </div>
+
+                        <div class="font-size-sm ms-lg-3">
+                            <span>9.45 (9.8k+ reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-block sk-thumbnail rounded mb-6" style="max-width: 1280px; max-height: 720px; overflow: hidden;">
+                <img class="rounded shadow-light-lg" src="{{posts.Cover.url}}" alt="{{posts.Title}}" style="width: 1280px; height: 720px;">
+            </div>            
+
+
+            <!-- POST INFO TAB
+                ================================================== -->
+            <div class="border rounded shadow p-3 mb-6">
+                <ul id="pills-tab" class="nav nav-pills course-tab-v2 h5 mb-0 flex-nowrap overflow-auto" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill" href="#pills-overview"
+                            role="tab" aria-controls="pills-overview" aria-selected="true">Contents</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-overview" role="tabpanel"
+                    aria-labelledby="pills-overview-tab">
+                    <p class="mb-6 line-height-md">{{posts.Description|safe}}</p>
+                </div>
+               
+
+                <div class="tab-pane fade" id="pills-curriculum" role="tabpanel" aria-labelledby="pills-curriculum-tab">
+                    <div id="accordionCurriculum">
+                        <div class="border rounded shadow mb-6 overflow-hidden">
+                            <div class="d-flex align-items-center" id="curriculumheadingOne">
+                                <h5 class="mb-0 w-100">
+                                    <button
+                                        class="d-flex align-items-center p-5 min-height-80 text-dark fw-medium collapse-accordion-toggle line-height-one"
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#CurriculumcollapseOne"
+                                        aria-expanded="true" aria-controls="CurriculumcollapseOne">
+                                        <span class="me-4 text-dark d-flex">
+                                            <!-- Icon -->
+                                            <svg width="15" height="2" viewBox="0 0 15 2" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="15" height="2" fill="currentColor" />
+                                            </svg>
+
+                                            <svg width="15" height="16" viewBox="0 0 15 16" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 7H15V9H0V7Z" fill="currentColor" />
+                                                <path d="M6 16L6 8.74228e-08L8 0L8 16H6Z" fill="currentColor" />
+                                            </svg>
+
+                                        </span>
+
+                                        Introduction
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="CurriculumcollapseOne" class="collapse show" aria-labelledby="curriculumheadingOne"
+                                data-parent="#accordionCurriculum">
+                                <div class="border-top px-5 py-4 min-height-70 d-md-flex align-items-center">
+                                    <div class="d-flex align-items-center me-auto mb-4 mb-md-0">
+                                        <div class="text-secondary d-flex">
+                                            <svg width="14" height="18" viewBox="0 0 14 18" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M12.5717 0H4.16956C4.05379 0.00594643 3.94322 0.0496071 3.85456 0.124286L0.413131 3.57857C0.328167 3.65957 0.280113 3.77191 0.280274 3.88929V16.8514C0.281452 17.4853 0.794988 17.9988 1.42885 18H12.5717C13.1981 17.9989 13.7086 17.497 13.7203 16.8707V1.14857C13.7191 0.514714 13.2056 0.00117857 12.5717 0ZM8.18099 0.857143H10.6988V4.87714L9.80527 3.45214C9.76906 3.39182 9.71859 3.3413 9.65827 3.30514C9.45529 3.18337 9.19204 3.24916 9.07027 3.45214L8.18099 4.87071V0.857143ZM3.7367 1.46786V2.66143C3.73552 3.10002 3.38029 3.45525 2.9417 3.45643H1.74813L3.7367 1.46786ZM12.8546 16.86C12.8534 17.0157 12.7274 17.1417 12.5717 17.1429H1.42885C1.42665 17.1429 1.42445 17.143 1.42226 17.143C1.26486 17.1441 1.13635 17.0174 1.13527 16.86V4.32214H2.9417C3.85793 4.31979 4.60006 3.57766 4.60242 2.66143V0.857143H7.31527V5.23286C7.31345 5.42593 7.37688 5.61391 7.49527 5.76643C7.67533 5.99539 7.98036 6.08561 8.25599 5.99143L8.28813 5.98071C8.49272 5.89484 8.66356 5.7443 8.77456 5.55214L9.44099 4.48071L10.1074 5.55214C10.2184 5.7443 10.3893 5.89484 10.5938 5.98071C10.8764 6.0922 11.1987 6.00509 11.3867 5.76643C11.5051 5.61391 11.5685 5.42593 11.5667 5.23286V0.857143H12.5717C12.7266 0.858268 12.8523 0.982982 12.8546 1.13786V16.86Z"
+                                                    fill="currentColor" />
+                                                <path
+                                                    d="M10.7761 14.3143H3.22252C2.98584 14.3143 2.79395 14.5062 2.79395 14.7429C2.79395 14.9796 2.98584 15.1715 3.22252 15.1715H10.7761C11.0128 15.1715 11.2047 14.9796 11.2047 14.7429C11.2047 14.5062 11.0128 14.3143 10.7761 14.3143Z"
+                                                    fill="currentColor" />
+                                                <path
+                                                    d="M10.7761 12.2035H3.22252C2.98584 12.2035 2.79395 12.3954 2.79395 12.6321C2.79395 12.8687 2.98584 13.0606 3.22252 13.0606H10.7761C11.0128 13.0606 11.2047 12.8687 11.2047 12.6321C11.2047 12.3954 11.0128 12.2035 10.7761 12.2035Z"
+                                                    fill="currentColor" />
+                                                <path
+                                                    d="M10.7761 10.0928H3.22252C2.98584 10.0928 2.79395 10.2847 2.79395 10.5213C2.79395 10.758 2.98584 10.9499 3.22252 10.9499H10.7761C11.0128 10.9499 11.2047 10.758 11.2047 10.5213C11.2047 10.2847 11.0128 10.0928 10.7761 10.0928Z"
+                                                    fill="currentColor" />
+                                                <path
+                                                    d="M10.7761 7.98218H3.22252C2.98584 7.98218 2.79395 8.17407 2.79395 8.41075C2.79395 8.64743 2.98584 8.83932 3.22252 8.83932H10.7761C11.0128 8.83932 11.2047 8.64743 11.2047 8.41075C11.2047 8.17407 11.0128 7.98218 10.7761 7.98218Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% comment %} <div class="mx-n4 mb-12"
+        data-flickity='{"pageDots": true, "prevNextButtons": false, "cellAlign": "left", "wrapAround": true, "imagesLoaded": true}'>
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src={% static "assets/img/products/product-15.jpg" %}
+                            alt="...">
+                    </a>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span
+                            class="mb-1 d-inline-block text-gray-800">Photography</span></a>
+
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link">
+                            <h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Fashion Photography
+                                From Professional</h5>
+                        </a>
+
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z"
+                                                        fill="currentColor" />
+                                                </svg>
+
+                                            </div>
+                                            <div class="font-size-sm">5 lessons</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-auto px-2 text-right">
+                                <div class="star-rating mb-2 mb-lg-0">
+                                    <div class="rating" style="width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src={% static "assets/img/products/product-14.jpg" %}
+                            alt="...">
+                    </a>
+
+                    <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
+                        <ins class="h5 mb-0 text-white">$415.99</ins>
+                    </span>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
+
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link">
+                            <h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Productivity and Time
+                                Management for workplace</h5>
+                        </a>
+
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z"
+                                                        fill="currentColor" />
+                                                </svg>
+
+                                            </div>
+                                            <div class="font-size-sm">5 lessons</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-auto px-2 text-right">
+                                <div class="star-rating mb-2 mb-lg-0">
+                                    <div class="rating" style="width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src={% static "assets/img/products/product-16.jpg" %}
+                            alt="...">
+                    </a>
+
+                    <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
+                        <ins class="h5 mb-0 text-white">$415.99</ins>
+                    </span>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Personal
+                            Development</span></a>
+
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link">
+                            <h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Learn Ethical Hacking
+                                From Scratch</h5>
+                        </a>
+
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z"
+                                                        fill="currentColor" />
+                                                </svg>
+
+                                            </div>
+                                            <div class="font-size-sm">5 lessons</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-auto px-2 text-right">
+                                <div class="star-rating mb-2 mb-lg-0">
+                                    <div class="rating" style="width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src={% static "assets/img/products/product-12.jpg" %}
+                            alt="...">
+                    </a>
+
+                    <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
+                        <ins class="h5 mb-0 text-white">$415.99</ins>
+                    </span>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span
+                            class="mb-1 d-inline-block text-gray-800">Development</span></a>
+
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link">
+                            <h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">The Complete
+                                JavaScript Course 2020: Real Projects!</h5>
+                        </a>
+
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z"
+                                                        fill="currentColor" />
+                                                </svg>
+
+                                            </div>
+                                            <div class="font-size-sm">5 lessons</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-auto px-2 text-right">
+                                <div class="star-rating mb-2 mb-lg-0">
+                                    <div class="rating" style="width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src={% static "assets/img/products/product-13.jpg" %}
+                            alt="...">
+                    </a>
+
+                    <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
+                        <ins class="h5 mb-0 text-white">$415.99</ins>
+                    </span>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
+
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link">
+                            <h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Learn Ethical Hacking
+                                From Scratch</h5>
+                        </a>
+
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z"
+                                                        fill="currentColor" />
+                                                </svg>
+
+                                            </div>
+                                            <div class="font-size-sm">5 lessons</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-auto px-2 text-right">
+                                <div class="star-rating mb-2 mb-lg-0">
+                                    <div class="rating" style="width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src={% static "assets/img/products/product-11.jpg" %}
+                            alt="...">
+                    </a>
+
+                    <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
+                        <ins class="h5 mb-0 text-white">$415.99</ins>
+                    </span>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span
+                            class="mb-1 d-inline-block text-gray-800">Development</span></a>
+
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link">
+                            <h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">The Complete
+                                JavaScript Course 2020: Real Projects!</h5>
+                        </a>
+
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z"
+                                                        fill="currentColor" />
+                                                </svg>
+
+                                            </div>
+                                            <div class="font-size-sm">5 lessons</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-auto px-2 text-right">
+                                <div class="star-rating mb-2 mb-lg-0">
+                                    <div class="rating" style="width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3 pb-4 pb-md-5" style="padding-right:15px;padding-left:15px;">
+            <!-- Card -->
+            <div class="card border shadow-dark-hover p-2 sk-fade">
+                <!-- Image -->
+                <div class="card-zoom position-relative">
+                    <a href="course-single-v5.html" class="card-img sk-thumbnail img-ratio-3 d-block">
+                        <img class="rounded shadow-light-lg" src={% static "assets/img/products/product-10.jpg" %}
+                            alt="...">
+                    </a>
+
+                    <span class="sk-fade-right badge-float bottom-0 right-0 mb-2 me-2">
+                        <ins class="h5 mb-0 text-white">$415.99</ins>
+                    </span>
+                </div>
+
+                <!-- Footer -->
+                <div class="card-footer px-2 pb-2 mb-1 pt-4 position-relative">
+                    <!-- Preheading -->
+                    <a href="course-single-v5.html"><span class="mb-1 d-inline-block text-gray-800">Marketing</span></a>
+
+                    <!-- Heading -->
+                    <div class="position-relative">
+                        <a href="course-single-v5.html" class="d-block stretched-link">
+                            <h5 class="line-clamp-2 h-md-48 h-lg-58 me-md-8 me-lg-10 me-xl-4 mb-2">Productivity and Time
+                                Management for workplace</h5>
+                        </a>
+
+                        <div class="row mx-n2 align-items-end">
+                            <div class="col px-2">
+                                <ul class="nav mx-n3">
+                                    <li class="nav-item px-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-2 d-flex icon-uxs text-secondary">
+                                                <!-- Icon -->
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M17.1947 7.06802L14.6315 7.9985C14.2476 7.31186 13.712 6.71921 13.0544 6.25992C12.8525 6.11877 12.6421 5.99365 12.4252 5.88303C13.0586 5.25955 13.452 4.39255 13.452 3.43521C13.452 1.54098 11.9124 -1.90735e-06 10.0197 -1.90735e-06C8.12714 -1.90735e-06 6.58738 1.54098 6.58738 3.43521C6.58738 4.39255 6.98075 5.25955 7.61414 5.88303C7.39731 5.99365 7.1869 6.11877 6.98502 6.25992C6.32752 6.71921 5.79178 7.31186 5.40787 7.9985L2.8447 7.06802C2.33612 6.88339 1.79688 7.26044 1.79688 7.80243V16.5178C1.79688 16.8465 2.00256 17.14 2.31155 17.2522L9.75312 19.9536C9.93073 20.018 10.1227 20.0128 10.2863 19.9536L17.7278 17.2522C18.0368 17.14 18.2425 16.8465 18.2425 16.5178V7.80243C18.2425 7.26135 17.704 6.88309 17.1947 7.06802ZM10.0197 1.5625C11.0507 1.5625 11.8895 2.40265 11.8895 3.43521C11.8895 4.46777 11.0507 5.30792 10.0197 5.30792C8.98866 5.30792 8.14988 4.46777 8.14988 3.43521C8.14988 2.40265 8.98866 1.5625 10.0197 1.5625ZM9.23844 18.1044L3.35938 15.9703V8.91724L9.23844 11.0513V18.1044ZM10.0197 9.67255L6.90644 8.54248C7.58164 7.51892 8.75184 6.87042 10.0197 6.87042C11.2875 6.87042 12.4577 7.51892 13.1329 8.54248L10.0197 9.67255ZM16.68 15.9703L10.8009 18.1044V11.0513L16.68 8.91724V15.9703Z"
+                                                        fill="currentColor" />
+                                                </svg>
+
+                                            </div>
+                                            <div class="font-size-sm">5 lessons</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-auto px-2 text-right">
+                                <div class="star-rating mb-2 mb-lg-0">
+                                    <div class="rating" style="width:100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+
+
+</div>
+
+{% endblock body %}
