@@ -2,7 +2,13 @@
 .idea/
 .vs/
 media/
+
 /Notes/migrations/*.py
+/Blog/migrations/*.py
+
 /acounts/migrations/*.py
 /acounts/__pycache__
 __pycache__/
+
+/Blog/migrations/*.py
+/Blog/__pycache__
