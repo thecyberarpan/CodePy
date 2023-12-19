@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
 from django.utils import timezone
+
 # Create your models here.
 
 
@@ -62,6 +63,10 @@ class Notes(models.Model):
 
     def __str__(self):
         return self.Title
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
 
 
 

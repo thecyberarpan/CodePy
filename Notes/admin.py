@@ -4,3 +4,4 @@ from.models import *
 admin.site.register(Author)
 admin.site.register(Category)
 admin.site.register(Notes)
+admin.site.register(Subscriber)
