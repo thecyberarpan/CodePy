@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8h8i+krg!xy#$ei8x3)!#&y%%qp_kc$f-12&8t(7&=#0j#s(m%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['c5c4-103-18-169-182.ngrok-free.app', '127.0.0.1']
+ALLOWED_HOSTS = ['6d6e-103-18-169-182.ngrok-free.app', '127.0.0.1']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Account.apps.AccountConfig',
     'Blog.apps.BlogConfig',
     'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -136,18 +137,11 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-
-
-
-
-
-
-
 # CKEditor Settings : reach text editor
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
 
 CKEDITOR_CONFIGS = {
     'default':
@@ -155,7 +149,8 @@ CKEDITOR_CONFIGS = {
             'toolbar': 'full',
             'width': 'auto',
             'extraPlugins': ','.join([
-                'codesnippet',
+                'codesnippet'
             ]),
+            'codeSnippet_theme': 'monokai_sublime',
         },
 }

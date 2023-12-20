@@ -687,9 +687,10 @@
                 <p class="text-capitalize font-size-lg mb-md-6 mb-4">We never spam. Promice!</p>
                 {% endif %}
                 <div class="mx-md-8">
+                    <!-- This code snippet creates a form with an input field for entering an email address and a submit button. When the form is submitted, it sends a POST request with the entered email address to the server. -->
                     <form method="post">
                         {% csrf_token %}
-                        <div class="input-group">
+                        <div class="input-group">                            
                             <input type="text" name="CallToAcrtion" class="form-control" placeholder="Enter your email"
                                 aria-label="Enter your email" aria-describedby="button-addon2">
                             <div class="input-group-append">

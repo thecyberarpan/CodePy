@@ -6,12 +6,12 @@ from django.http import JsonResponse
 
 # Create your views here.
 def BlogIndex(request):
-    blog_post = Blogs.objects.all()
+    # blog_post = Blogs.objects.all().order_by('-id')
     selected_category = request.GET.get('category', None)
     if selected_category and selected_category != 'All Categories':
         blog_post = Blogs.objects.filter(Category__Title=selected_category)
     else:
-        blog_post = Blogs.objects.all()
+        blog_post = Blogs.objects.all().order_by('-id')
 
     numOf_post = Blogs.objects.count()
     blog_category = BlogCategory.objects.all()

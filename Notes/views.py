@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from Blog.models import Blogs
 from .forms import SubscriberForm
 from .models import Subscriber
+from django.contrib import messages
 
 
 # Create your views here.
@@ -18,11 +19,15 @@ def Index(request):
 
     if request.method == "POST":
         subscribe_email = request.POST.get('CallToAcrtion')
-        # Create an instance of your Subscriber model
-        subscriber_instance = Subscriber(email=subscribe_email)
-
-        # Save the instance to the database
-        subscriber_instance.save()
+        #check if email already exists
+        if Subscriber.objects.filter(email = subscribe_email).exists():
+            messages.error(request, "This email is already subscribed")
+        else:
+            # Create an instance of your Subscriber model
+            subscriber_instance = Subscriber(email=subscribe_email)
+            
+            # Save the instance to the database
+            subscriber_instance.save()
 
     context = {'notes': notes, 'category': category, 'author': author, 'blog_posts':  blog_posts}
     return render(request, 'Notes/index.html', context)

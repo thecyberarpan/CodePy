@@ -34,6 +34,21 @@
     <!-- Map -->
     <link href='../../../api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
 
+    <!-- CKEDITOR Highlight JS -->
+    <link href={% static "ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" %} rel="stylesheet">
+    <link href="{% static 'ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/custom_highlight.css' %}" rel="stylesheet">
+    <script src={% static "assets/js/code-highlight.js" %}></script>    
+
+
+    
+    <script
+  src="https://code.jquery.com/jquery-3.6.3.min.js"
+  integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+  crossorigin="anonymous"></script>
+
+  <script src={% static "assets/js/copy-btn.js" %}></script>    
+
     <!-- Theme CSS -->
     <link rel="stylesheet" href={% static "assets/css/theme.min.css" %}>
     <link rel="stylesheet" href={% static "assets/css/download-btn.css" %}>
@@ -41,6 +56,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <title>{% block title %}CodePy{% endblock title %}</title>
 
 </head>
@@ -691,6 +707,11 @@
     <script src={% static "assets/js/download-btn-timer.js" %}></script>
     <script src={% static "assets/js/blog-index-filter.js" %}></script>
     <script src={% static "assets/js/blog-index.search.js" %}></script>
+    
+    
+    <!-- CKEDITOR Highlight JS -->
+    <script src={% static "ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js" %}></script>
+    
 </body>
 
 <!-- Mirrored from transvelo.github.io/skola-html/5.1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Jan 2022 12:12:08 GMT -->
