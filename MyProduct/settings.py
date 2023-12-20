@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8h8i+krg!xy#$ei8x3)!#&y%%qp_kc$f-12&8t(7&=#0j#s(m%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['c5c4-103-18-169-182.ngrok-free.app', '127.0.0.1']
 
@@ -60,7 +60,9 @@ ROOT_URLCONF = 'MyProduct.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        # 'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

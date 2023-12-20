@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from Blog.models import Blogs
 from .forms import SubscriberForm
 from .models import Subscriber
+
+
 # Create your views here.
 
 def Index(request):
@@ -89,3 +91,7 @@ def filtered_results(request):
 
     context = {'notes': notes, 'category': category}
     return render(request, 'Notes/filtered-results.html', context)
+
+
+def error_404_view(request, exception):
+    return render(request, 'Notes/404.html')
