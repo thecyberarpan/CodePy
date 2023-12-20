@@ -681,11 +681,24 @@
             <div class="col-xl-7 mx-auto">
                 <h1 class="text-capitalize">Subscribe our newsletter</h1>
                 {% if user.is_authenticated %}
-                <p class="text-capitalize font-size-lg mb-md-6 mb-4">Hello {{user.username}}, We never spam. Promice!
-                </p>
+                <p class="text-capitalize font-size-lg mb-md-6 mb-4">Hello {{user.username}}, We never spam. Promice!</p>
                 {% else %}
                 <p class="text-capitalize font-size-lg mb-md-6 mb-4">We never spam. Promice!</p>
                 {% endif %}
+
+
+                <!-- already exits email in newslatter handel-->
+                {% if messages %}
+                {% for message in messages %}
+                {% if user.is_authenticated %}
+                <p {% if message.tags %} class=" {{ message.tags }} text-capitalize font-size-lg mb-md-6 mb-4" {% endif %}>Hello {{user.username}}, {{ message }}!</p>
+                {% else %}
+                <p {% if message.tags %} class=" {{ message.tags }} text-capitalize font-size-lg mb-md-6 mb-4" {% endif %} style="color:red">{{ message }}!</p>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+
                 <div class="mx-md-8">
                     <!-- This code snippet creates a form with an input field for entering an email address and a submit button. When the form is submitted, it sends a POST request with the entered email address to the server. -->
                     <form method="post">
